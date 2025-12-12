@@ -7,8 +7,8 @@
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Unity Web Player | Image website</title>
-    <link rel="shortcut icon" href="/game/template_data/favicon.ico">
-    <link rel="stylesheet" href="/game/template_data/style.css">
+    <link rel="shortcut icon" href="/gamefiles/template_data/favicon.ico">
+    <link rel="stylesheet" href="/gamefiles/template_data/style.css">
   </head>
   <body>
     <div id="unity-container" class="unity-desktop">
@@ -55,14 +55,14 @@
         updateBannerVisibility();
       }
 
-      var buildUrl = "/game/build";
+      var buildUrl = "/gamefiles/build";
       var loaderUrl = buildUrl + "/imageWebsiteLoader.js";
       var config = {
         arguments: [],
         dataUrl: buildUrl + "/imageWebsite.data",
         frameworkUrl: buildUrl + "/imageWebsiteFramework.js",
         codeUrl: buildUrl + "/imageWebsite.wasm",
-        streamingAssetsUrl: "/game/streaming_assets",
+        streamingAssetsUrl: "/gamefiles/streaming_assets",
         companyName: "DefaultCompany",
         productName: "Image website",
         productVersion: "0.1.0",
