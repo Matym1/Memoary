@@ -1,0 +1,5 @@
+*.js application/javascript
+*.wasm application/wasm
+*.data application/octet-stream
+*.framework.js application/javascript
+*.loader.js application/javascript
