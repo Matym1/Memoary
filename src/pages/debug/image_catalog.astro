@@ -1,0 +1,27 @@
+---
+import '../../styles/global.css';
+import DebugImageDisplay from '../../components/DebugImageDisplay.astro';
+
+import json from '../../../public/images/image_index.json' assert { type: 'json' };
+const images = Object.keys(json);
+---
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>DEBUG: Image catalog</title>
+	</head>
+	<body class="flex flex-col items-center min-h-screen text-center">
+
+		<h1 class="w-screen text-center text-4xl">DEBUG CATALOG</h1>
+        <p> This is a debug page, it is not intended to be used for browsing images </p>
+        {
+            images.map((image)=>{
+                return <DebugImageDisplay image={image} />
+            })
+        }
+
+	</body>
+</html>

@@ -1,0 +1,24 @@
+---
+const {image} = Astro.props;
+const imageSrcFile  = '/images/' + image + '.jpg';
+import { string } from 'astro:schema';
+import json from '../../public/images/image_index.json' assert { type: 'json' };
+
+class Metadata {
+    alt:string;
+    tags:string;
+    constructor(alt:string, tags:string){
+        this.alt = alt;
+        this.tags = tags;
+    }
+}
+var metadata = new Metadata("No alt text available", "No tags available");
+
+
+    metadata = json[image as keyof typeof string];
+---
+
+<div>
+    <img src={imageSrcFile} alt={metadata.alt} class="max-w-full h-auto mx-auto my-4 border border-gray-300 rounded-lg shadow-md"/>
+    <p>Tags: {metadata.tags}</p>
+</div>

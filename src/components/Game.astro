@@ -1,30 +1,20 @@
 ---
-
+// TODO: Fix all of the broken default unity code
 ---
 
-<html lang="en-us">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity Web Player | Image website</title>
-    <link rel="shortcut icon" href="/gamefiles/template_data/favicon.ico">
-    <link rel="stylesheet" href="/gamefiles/template_data/style.css">
-  </head>
-  <body>
+  <div>
+    <!-- <link rel="stylesheet" href="/gamefiles/template_data/style.css"> -->
     <div id="unity-container" class="unity-desktop">
       <canvas id="unity-canvas" width=960 height=600 tabindex="-1"></canvas>
-      <div id="unity-loading-bar">
-        <div id="unity-logo"></div>
+      <!-- <div id="unity-loading-bar">
         <div id="unity-progress-bar-empty">
           <div id="unity-progress-bar-full"></div>
         </div>
       </div>
       <div id="unity-warning"> </div>
       <div id="unity-footer">
-        <div id="unity-logo-title-footer"></div>
         <div id="unity-fullscreen-button"></div>
-        <div id="unity-build-title">Image website</div>
-      </div>
+      </div> -->
     </div>
     <script>
       var canvas:HTMLElement | null = document.querySelector("#unity-canvas");
@@ -35,25 +25,25 @@
       // Modify or remove this function to customize the visually presented
       // way that non-critical warnings and error messages are presented to the
       // user.
-      function unityShowBanner(msg:string, type:string) {
-        var warningBanner = document.querySelector("#unity-warning") as HTMLElement;
-        function updateBannerVisibility() {
-          if(!warningBanner) return;
-          warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
-        }
-        var div = document.createElement('div');
-        div.innerHTML = msg;
-        warningBanner.appendChild(div);
-        if (type == 'error') div.style = 'background: red; padding: 10px;';
-        else {
-          if (type == 'warning') div.style = 'background: yellow; padding: 10px;';
-          setTimeout(function() {
-            warningBanner.removeChild(div);
-            updateBannerVisibility();
-          }, 5000);
-        }
-        updateBannerVisibility();
-      }
+      // function unityShowBanner(msg:string, type:string) {
+      //   var warningBanner = document.querySelector("#unity-warning") as HTMLElement;
+      //   function updateBannerVisibility() {
+      //     if(!warningBanner) return;
+      //     warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
+      //   }
+      //   var div = document.createElement('div');
+      //   div.innerHTML = msg;
+      //   warningBanner.appendChild(div);
+      //   if (type == 'error') div.style = 'background: red; padding: 10px;';
+      //   else {
+      //     if (type == 'warning') div.style = 'background: yellow; padding: 10px;';
+      //     setTimeout(function() {
+      //       warningBanner.removeChild(div);
+      //       updateBannerVisibility();
+      //     }, 5000);
+      //   }
+      //   updateBannerVisibility();
+      // }
 
       var buildUrl = "/gamefiles/build";
       var loaderUrl = buildUrl + "/imageWebsiteLoader.js";
@@ -66,7 +56,8 @@
         companyName: "DefaultCompany",
         productName: "Image website",
         productVersion: "0.1.0",
-        showBanner: unityShowBanner,
+        showBanner: null,
+        autoSyncPersistentDataPath:true
       };
 
       // By default, Unity keeps WebGL canvas render target size matched with
@@ -79,7 +70,7 @@
       // If you would like all file writes inside Unity Application.persistentDataPath
       // directory to automatically persist so that the contents are remembered when
       // the user revisits the site the next time, uncomment the following line:
-      // config.autoSyncPersistentDataPath = true;
+      // config.autoSyncPersistentDataPath = true;        - I added a command allowing autosyncing to the initial config
       // This autosyncing is currently not the default behavior to avoid regressing
       // existing user projects that might rely on the earlier manual
       // JS_FileSystem_Sync() behavior, but in future Unity version, this will be
@@ -115,6 +106,7 @@
       if (loading_bar) 
       loading_bar.style.display = "block";
 
+      //  This is the actual script that is responsible for initializing the unity game
       var script = document.createElement("script");
       script.src = loaderUrl;
       script.onload = () => {
@@ -140,5 +132,4 @@
       document.body.appendChild(script);
 
     </script>
-  </body>
-</html>
+  </div>
