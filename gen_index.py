@@ -37,7 +37,7 @@ occupied_positions = []
 
 def gen_free_position():
     while True:
-        pos = [random.randint(0,grid_size-1), random.randint(0,grid_size-1)]
+        pos = [random.randint(0,grid_size-1), random.randint(0,grid_size-1), random.randint(0,grid_size-1)]
         if pos not in occupied_positions:
             occupied_positions.append(pos)
             return pos
@@ -58,6 +58,8 @@ for image in images:
                 "position":gen_free_position(),
                 }
             img_index['images'][image]=img_data
+        else:
+            img_index['images'][image]['position'] = gen_free_position()
 
 
 json_object = json.dumps(img_index)
