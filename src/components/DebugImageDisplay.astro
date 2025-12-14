@@ -6,19 +6,34 @@ import json from '../../public/images/image_index.json' assert { type: 'json' };
 
 class Metadata {
     alt:string;
-    tags:string;
-    constructor(alt:string, tags:string){
+    tags:[string];
+    constructor(alt:string, tags:[string]){
         this.alt = alt;
         this.tags = tags;
     }
 }
-var metadata = new Metadata("No alt text available", "No tags available");
+var metadata = new Metadata("No alt text available", ["No tags available"]);
+metadata = json['images'][image as keyof typeof string];
+var imageClass = "max-w-80 mx-auto my-4 border border-gray-300 rounded-lg shadow-md object-cover";
+var divClass = "flex justify-center items-center";
+if(metadata.tags.includes('vertical')){
+    imageClass = imageClass.concat(" rotate-90 h-auto");
+    divClass = divClass.concat(" h-150");
+}
+else{
+    imageClass = imageClass.concat(" w-full");
+    divClass = divClass.concat(" h-auto");
+}
 
-
-    metadata = json[image as keyof typeof string];
+const imageLabel = image.replaceAll("_", ".");
 ---
 
-<div>
-    <img src={imageSrcFile} alt={metadata.alt} class="max-w-full h-auto mx-auto my-4 border border-gray-300 rounded-lg shadow-md"/>
-    <p>Tags: {metadata.tags}</p>
+<div class="h-100 w-100 p-4 bg-white rounded-lg shadow-md flex flex-col items-center">
+    <h1 class="font-bold">{imageLabel}</h1>
+    <div class={divClass}>
+        <img src={imageSrcFile} alt={metadata.alt} class={imageClass}/>
+    </div>
+    <p>Tags: {metadata.tags.map((tag)=>{
+        return "#"+ tag + " ";
+    })}</p>
 </div>

@@ -3,7 +3,7 @@ import '../../styles/global.css';
 import DebugImageDisplay from '../../components/DebugImageDisplay.astro';
 
 import json from '../../../public/images/image_index.json' assert { type: 'json' };
-const images = Object.keys(json);
+const images = Object.keys(json['images'] as Record<string, unknown>);
 ---
 <html lang="en">
 	<head>
