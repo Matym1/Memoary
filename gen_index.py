@@ -45,15 +45,15 @@ def gen_free_position():
 for image in images:
         if image not in img_index['images']:
             print(f"New image found: {image}, adding to index")
+            title = input(f"Enter the title for the image {image}: ").strip()
             tags = input(f"Enter tags for image {image} (comma separated): ").strip().split(',')
-            alt = input(f"Enter alt text for image {image}: ").strip()
             if(tags==['']):
                 tags = []
             else:
                 tags = [tag.strip() for tag in tags]
 
             img_data = {
-                "alt":alt,
+                "title":title,
                 "tags":tags,
                 "position":gen_free_position(),
                 }
