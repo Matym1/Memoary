@@ -53,9 +53,9 @@ for image in images:
                 tags = [tag.strip() for tag in tags]
 
             img_data = {
-                "title":title,
                 "tags":tags,
                 "position":gen_free_position(),
+                "title":title,
                 }
             img_index['images'][image]=img_data
         else:
